@@ -26,4 +26,4 @@ COPY . .
 # I like pie
 
 # Load up the i2c module and launch our project
-CMD modprobe i2c-dev && python -u project/main.py
+CMD modprobe i2c-dev && bash
