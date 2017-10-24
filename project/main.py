@@ -21,6 +21,7 @@ while True:
         }
         dictlist.append(mydict)
     except:
-        print(dictlist)
+        df = pd.DataFrame(dictlist)
+        print(df)
         print("KABLOOEY!")
         break
