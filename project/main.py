@@ -21,13 +21,3 @@ print(data.humidity)
 
 # there is a handy string representation too
 print(data)
-
-mydict = {
-    "uuid": str(data.id),
-    "timestamp" : datetime.strftime(data.timestamp, "%s%f"),
-    "temperature" : data.temperature
-    "pressure" : data.pressure,
-    "humidity" : data.humidity
-    }
-
-print(mydict)
