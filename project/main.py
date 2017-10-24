@@ -1,7 +1,7 @@
 from datetime import datetime
-import pandas as pd
 
 import bme280
+import pandas as pd
 import smbus2
 
 port = 1

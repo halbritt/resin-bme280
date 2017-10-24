@@ -1,2 +1,4 @@
 rpi.bme280
 pandas
+git+https://github.com/mrocklin/streamz.git
+
