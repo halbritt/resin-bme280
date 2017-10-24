@@ -1,4 +1,5 @@
 from datetime import datetime
+import pandas as pd
 
 import bme280
 import smbus2
@@ -7,7 +8,7 @@ port = 1
 address = 0x76
 bus = smbus2.SMBus(port)
 bme280.load_calibration_params(bus, address)
-
+dictlist = []
 while True:
     try:
         data = bme280.sample(bus, address)
@@ -18,8 +19,8 @@ while True:
             "pressure": data.pressure,
             "humidity": data.humidity
         }
-
-        print(mydict)
+        dictlist.append(mydict)
     except:
+        print(dictlist)
         print("KABLOOEY!")
         break
