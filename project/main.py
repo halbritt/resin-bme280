@@ -8,7 +8,7 @@ bus = smbus2.SMBus(port)
 bme280.load_calibration_params(bus, address)
 
 
-While True:
+while True:
     try:
         data = bme280.sample(bus, address)
         mydict = {
