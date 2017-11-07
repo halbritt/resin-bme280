@@ -1,27 +1,26 @@
-from datetime import datetime
-
 import bme280
-import pandas as pd
 import smbus2
+from flask import Flask
 
 port = 1
 address = 0x76
 bus = smbus2.SMBus(port)
 bme280.load_calibration_params(bus, address)
-dictlist = []
-while True:
-    try:
-        data = bme280.sample(bus, address)
-        mydict = {
-            "uuid": str(data.id),
-            "timestamp": datetime.strftime(data.timestamp, "%s%f"),
-            "temperature": data.temperature,
-            "pressure": data.pressure,
-            "humidity": data.humidity
-        }
-        dictlist.append(mydict)
-    except:
-        df = pd.DataFrame(dictlist)
-        print(df)
-        print("KABLOOEY!")
-        break
+app = Flask(__name__)
+
+
+@app.route('/')
+def get_sample():
+    data = bme280.sample(bus, address)
+    mydict = {
+        "uuid": str(data.id),
+        "timestamp": datetime.strftime(data.timestamp, "%s%f"),
+        "temperature": data.temperature,
+        "pressure": data.pressure,
+        "humidity": data.humidity
+    }
+    return mydict
+
+
+if __name__ == '__main__':
+    app.run(host='0.0.0.0', port=80)
